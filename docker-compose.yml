@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  juke-box-live-music:
+    build: ./app
+    restart: always
+    command: sh -c "nodemon -L --ext '*' server/src/index.js"
+    volumes:
+      - ./app/frontend/src/:/app/frontend/src/
+      - ./app/server/src/:/app/server/src/
+    ports:
+      - "8080:8080"
