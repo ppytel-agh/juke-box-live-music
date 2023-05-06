@@ -9,6 +9,10 @@ const eventTitles = [
   'Event 4',
   'Event 5',
   'Event 6',
+  'Event 7',
+  'Event 8',
+  'Event 9',
+  'Event 10',
 ];
 
 const Events: React.FC = () => {
@@ -37,7 +41,10 @@ const Events: React.FC = () => {
   };
 
   return (
-    <div className="events-container" style={{ backgroundColor: '#BFD2FF' }}>
+    <div
+      className="events-container vh-100"
+      style={{ backgroundColor: '#BFD2FF' }}
+    >
       <Container>{renderEventBoxes()}</Container>
     </div>
   );
