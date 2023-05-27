@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
-import logo from '../assets/logo.png';
+import logo from '../../assets/logo.png';
+import './Header.css';
 
 const Header: React.FC = () => {
+  const [isLogged, setIsLogged] = useState(false);
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -18,7 +21,18 @@ const Header: React.FC = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link href="/wydarzenia">Wydarzenia</Nav.Link>
-            <Nav.Link href="/konta">Konto</Nav.Link>
+
+            {isLogged ? (
+              <>
+                <Nav.Link href="/konto">Konto</Nav.Link>
+                <Nav.Link href="/">Wyloguj</Nav.Link>
+              </>
+            ) : (
+              <>
+                <Nav.Link href="/zaloguj-sie">Zaloguj się</Nav.Link>
+                <Nav.Link href="/zarejestruj-sie">Zarejestruj się</Nav.Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
