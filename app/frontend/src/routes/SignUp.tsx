@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 
 const SignUp = () => {
 
-  const [signUpData, setSignUpData] = useState({nazwa_uzytkownika: '', email: '', haslo: ''})
+  const [signUpData, setSignUpData] = useState({imie: '', nazwisko: '', email: '', haslo: ''})
 
   const onFormChange = (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLButtonElement;
@@ -16,16 +16,17 @@ const SignUp = () => {
 
   const signUp = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    // URL?
     try {
       const res = await
-      fetch('localhost:8080/register-new-user', {
+      fetch('http://localhost:8080/register-new-user', {
         method: 'POST',
-        headers: new Headers(),
-        body: JSON.stringify(signUpData)
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(signUpData),
       })
 
-      alert(res.json())
+      alert("Udało się zarejestrować!")
       window.location.replace('/')
     }
     catch(err) {
@@ -47,14 +48,21 @@ const SignUp = () => {
             className="d-flex flex-column align-items-start my-3"
           >
             <Form.Label>Imię</Form.Label>
-            <Form.Control type="text" name='nazwa_uzytkownika' onChange={onFormChange}/>
+            <Form.Control type="text" name='imie' onChange={onFormChange}/>
           </Form.Group>
           <Form.Group
             controlId="formBasicLastName"
             className="d-flex flex-column align-items-start my-3"
           >
             <Form.Label>Nazwisko</Form.Label>
-            <Form.Control type="text" />
+            <Form.Control type="text" name='nazwisko' onChange={onFormChange}/>
+          </Form.Group>
+          <Form.Group
+            controlId="formBasicUsername"
+            className="d-flex flex-column align-items-start my-3"
+          >
+            <Form.Label>nazwa uzytkownika</Form.Label>
+            <Form.Control type="text" name='nazwa_uzytkownika' onChange={onFormChange}/>
           </Form.Group>
           <Form.Group
             controlId="formBasicEmail"

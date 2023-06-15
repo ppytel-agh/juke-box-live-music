@@ -16,16 +16,17 @@ const LoginPage = () => {
 
   const login = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    // URL?
     try {
       const res = await
-      fetch('localhost:8080/login', {
+      fetch('http://localhost:8080/login', {
         method: 'POST',
-        headers: new Headers(),
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(loginData)
       })
 
-      alert(res.json())
+      alert("Udało się zalogować!")
       window.location.replace('/')
     }
     catch(err) {
@@ -47,6 +48,14 @@ const LoginPage = () => {
           >
             <Form.Label>Email</Form.Label>
             <Form.Control type="email" name='email' onChange={onFormChange}/>
+          </Form.Group>
+
+          <Form.Group
+            controlId="formBasicUsername"
+            className="d-flex flex-column align-items-start my-3"
+          >
+            <Form.Label>nazwa_uzytkownika</Form.Label>
+            <Form.Control type="email" name='nazwa_uzytkownika' onChange={onFormChange}/>
           </Form.Group>
 
           <Form.Group

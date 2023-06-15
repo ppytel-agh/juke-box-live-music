@@ -4,6 +4,6 @@ module.exports = {
   entities: [
      "src/entity/**/*.js"
   ],
-  synchronize: true,
+  synchronize: false,
   logging: false,
 }
