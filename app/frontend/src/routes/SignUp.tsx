@@ -1,9 +1,12 @@
 import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import Header from '../components/Header/Header';
 
 const SignUp = () => {
 
   const [signUpData, setSignUpData] = useState({imie: '', nazwisko: '', email: '', haslo: ''})
+
+  const isLogged = false;
 
   const onFormChange = (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLButtonElement;
@@ -35,6 +38,8 @@ const SignUp = () => {
   }
 
   return (
+    <>
+    <Header isLogged={isLogged}/>
     <div
       className="d-flex align-items-center justify-content-center vh-100"
       style={{ backgroundColor: '#BFD2FF' }}
@@ -94,6 +99,8 @@ const SignUp = () => {
         </Form>
       </div>
     </div>
+    </>
+
   );
 };
 

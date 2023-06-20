@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap';
 
 const EventDetails = () => {
   const eventName = 'Example Event'; // Replace with actual event name
@@ -15,25 +15,22 @@ const EventDetails = () => {
     <div
       style={{
         height: '100vh',
-        backgroundColor: '#f7eceb',
+        backgroundColor: '#D9E4FF',
         paddingTop: '48px',
       }}
     >
       <Container>
-        <Row>
-          <Col md={6}>
-            <div>
-              <h2>{eventName}</h2>
-              <p>{eventDetails}</p>
-              <Button variant="primary" onClick={handleBuyTickets}>
+        <Card>
+        <Card.Body>
+          <Card.Title>{eventName}</Card.Title>
+          <Card.Text>{eventDetails}</Card.Text>
+          <Button variant="primary" onClick={handleBuyTickets}>
                 Kup bilet
-              </Button>
-            </div>
-          </Col>
-          <Col md={6}>
-            <img src={imageUrl} alt="Event" style={{ width: '100%' }} />
-          </Col>
-        </Row>
+          </Button>
+        </Card.Body>
+        <Card.Img variant="bottom" src={imageUrl} />
+        
+      </Card>
       </Container>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Image } from 'react-bootstrap';
 import Event from '../Event/Event';
 import './Events.css';
 import { Link, Route, Routes } from 'react-router-dom';
@@ -79,18 +79,19 @@ const Events: React.FC = () => {
   };
 
   return (
-    <div className="events-container" style={{ backgroundColor: '#BFD2FF' }}>
+    <div className="events-container">
       <Container>
         <div className="grid-container">
           {eventTitles.map(
             ({ nazwa_koncertu, data_koncertu, imageUrl }, index) => (
               <Link to={`/wydarzenia/${index}`} key={index}>
                 <Card style={{ width: '18rem' }}>
-                  <Card.Img
+                  {/* <Card.Img
                     variant="top"
                     src={imageUrl}
                     style={{ height: '140px' }}
-                  />
+                  /> */}
+                  <Image src={imageUrl} thumbnail style={{ height: '140px' }} />
                   <Card.Body>
                     <Card.Title>{nazwa_koncertu}</Card.Title>
                     <Card.Text>{formatDate(data_koncertu)}</Card.Text>

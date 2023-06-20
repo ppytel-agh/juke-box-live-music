@@ -8,6 +8,7 @@ import EventDetails from './routes/EventDetails';
 import Event from './components/Event/Event';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import EventsPage from './routes/EventsPage';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: '/wydarzenia/:id',
     element: <EventDetails />,
+  },
+  {
+    path: '/wydarzenia',
+    element: <EventsPage />,
   },
 ]);
 
