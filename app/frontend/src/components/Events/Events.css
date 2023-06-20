@@ -20,4 +20,22 @@
     font-size: 24px;
     text-align: center;
   }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  
+  .column {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .event {
+    padding: 10px;
+    background-color: lightgray;
+    border: 1px solid gray;
+    
+  }
   

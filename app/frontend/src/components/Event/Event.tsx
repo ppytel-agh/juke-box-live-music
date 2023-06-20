@@ -3,31 +3,27 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './Event.css';
 import { useLocation } from 'react-router-dom';
 
-
 const Events = () => {
-  const [event, setEvent] = useState([])
+  const [event, setEvent] = useState([]);
 
-  const id = useLocation().pathname.split('/')[2]
+  const id = useLocation().pathname.split('/')[2];
 
   const fetchEventsData = () => {
     fetch(`http://localhost:8080/events/${id}`)
-      .then( response => { 
-        return response.json() 
-    })
-      .then(data => { 
-        setEvent(data)
-    })
-  }
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setEvent(data);
+      });
+  };
 
-  useEffect( () => {
+  useEffect(() => {
     // fetchEventsData()
-  }, [])
+  }, []);
 
   return (
-    <div
-      className="events-container vh-100"
-      style={{ backgroundColor: '#BFD2FF' }}
-    >
+    <div className="events-container" style={{ backgroundColor: '#BFD2FF' }}>
       <Container>{event}</Container>
     </div>
   );

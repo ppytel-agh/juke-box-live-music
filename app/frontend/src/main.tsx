@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Homepage from './routes/Homepage';
 import Login from './routes/Login';
 import SignUp from './routes/SignUp';
+import EventDetails from './routes/EventDetails';
 import Event from './components/Event/Event';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
@@ -23,8 +24,8 @@ const router = createBrowserRouter([
   },
   {
     path: '/wydarzenia/:id',
-    element: <Event />,
-  }
+    element: <EventDetails />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
