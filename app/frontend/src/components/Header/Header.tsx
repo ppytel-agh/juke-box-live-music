@@ -3,8 +3,7 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import logo from '../../assets/logo.png';
 import './Header.css';
 
-const Header = ({isLogged}: {isLogged: boolean}) => {
-  
+const Header = ({ isLogged }: { isLogged: boolean }) => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -23,7 +22,7 @@ const Header = ({isLogged}: {isLogged: boolean}) => {
 
             {isLogged ? (
               <>
-                <Nav.Link href="/konto">Konto</Nav.Link>
+                <Nav.Link href="/panel-klienta">Panel klienta</Nav.Link>
                 <Nav.Link href="/">Wyloguj</Nav.Link>
               </>
             ) : (
