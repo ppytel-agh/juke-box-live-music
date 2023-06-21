@@ -9,6 +9,9 @@ import Event from './components/Event/Event';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import EventsPage from './routes/EventsPage';
+import BookTicket from './routes/BookTicket';
+import TicketSuccess from './routes/TicketSuccess';
+import ClientPanel from './routes/ClientPanel';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +33,18 @@ const router = createBrowserRouter([
   {
     path: '/wydarzenia',
     element: <EventsPage />,
+  },
+  {
+    path: '/kup-bilet/:id',
+    element: <BookTicket />,
+  },
+  {
+    path: '/kupiono-bilet',
+    element: <TicketSuccess />,
+  },
+  {
+    path: '/panel-klienta',
+    element: <ClientPanel />,
   },
 ]);
 
