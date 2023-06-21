@@ -4,8 +4,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Homepage from './routes/Homepage';
 import Login from './routes/Login';
 import SignUp from './routes/SignUp';
+import EventDetails from './routes/EventDetails';
+import Event from './components/Event/Event';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import EventsPage from './routes/EventsPage';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +22,14 @@ const router = createBrowserRouter([
   {
     path: '/zarejestruj-sie',
     element: <SignUp />,
+  },
+  {
+    path: '/wydarzenia/:id',
+    element: <EventDetails />,
+  },
+  {
+    path: '/wydarzenia',
+    element: <EventsPage />,
   },
 ]);
 

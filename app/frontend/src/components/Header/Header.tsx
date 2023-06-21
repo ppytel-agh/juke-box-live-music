@@ -3,13 +3,12 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import logo from '../../assets/logo.png';
 import './Header.css';
 
-const Header: React.FC = () => {
-  const [isLogged, setIsLogged] = useState(false);
-
+const Header = ({isLogged}: {isLogged: boolean}) => {
+  
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           <img
             src={logo}
             height="30"

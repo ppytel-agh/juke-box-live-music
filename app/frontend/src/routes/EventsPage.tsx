@@ -1,7 +1,7 @@
 import Header from '../components/Header/Header';
 import Events from '../components/Events/Events';
 
-function Homepage() {
+function EventsPage() {
   const isLogged = false;
   return (
     <>
@@ -11,4 +11,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default EventsPage;
