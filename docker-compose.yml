@@ -1,5 +1,19 @@
 version: "3.9"
+
+volumes:
+  postgres_db:
+
 services:
+  database:
+    image: postgres
+    restart: always
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    ports:
+      - "5432:5432"
   juke-box-live-music:
     build: ./app
     restart: always
@@ -9,3 +23,7 @@ services:
       - ./app/server/src/:/app/server/src/
     ports:
       - "8080:8080"
+    depends_on:
+      - database
+    links: 
+      - database

@@ -8,7 +8,19 @@ app.use(cors())
 const port = 8080;
 app.use(express.json());
 
-typeorm.createConnection().then(() => {
+typeorm.createConnection({
+  type: "postgres",
+  host: "database", 
+  port: 5432, 
+  username: "postgres", 
+  password: "postgres", 
+  database: "postgres",
+  entities: [
+    __dirname + '/entity/*.js'
+  ],
+  synchronize: true,
+  logging: false,
+}).then(() => {
   console.log("Connected to the database.");
 }).catch((error) => {
   console.error("Error connecting to the database:", error);
