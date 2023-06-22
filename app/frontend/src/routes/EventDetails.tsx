@@ -3,10 +3,9 @@ import Events from '../components/Events/Events';
 import EventDetails from '../components/EventDetails/EventDetails';
 
 function Homepage() {
-  const isLogged = false;
   return (
     <>
-      <Header isLogged={isLogged} />
+      <Header />
       <EventDetails />
     </>
   );

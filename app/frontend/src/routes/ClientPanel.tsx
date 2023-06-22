@@ -3,8 +3,6 @@ import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import Header from '../components/Header/Header';
 
 const ClientPanel = () => {
-  const isLogged = false;
-
   //TODO: fetch events and adjust list
   const userEvents = [
     'Wydarzenie 1',
@@ -16,7 +14,7 @@ const ClientPanel = () => {
 
   return (
     <>
-      <Header isLogged={isLogged} />
+      <Header />
       <Container
         fluid
         className="vh-100"

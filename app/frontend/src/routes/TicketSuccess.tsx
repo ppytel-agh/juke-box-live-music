@@ -2,10 +2,9 @@ import React from 'react';
 import Header from '../components/Header/Header';
 
 const TicketSuccess = () => {
-  const isLogged = false;
   return (
     <>
-      <Header isLogged={isLogged} />
+      <Header />
       <div
         className="d-flex flex-column align-items-center  vh-100"
         style={{

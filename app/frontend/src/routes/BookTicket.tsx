@@ -4,10 +4,9 @@ import EventDetails from '../components/EventDetails/EventDetails';
 import EventForm from '../components/EventForm/EventForm';
 
 function BookTicket() {
-  const isLogged = false;
   return (
     <>
-      <Header isLogged={isLogged} />
+      <Header />
       <EventForm />
     </>
   );
