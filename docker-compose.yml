@@ -1,5 +1,9 @@
 version: "3.9"
 
+networks:
+  net:
+    driver: bridge
+
 volumes:
   postgres_db:
 
@@ -14,16 +18,31 @@ services:
       - POSTGRES_USER=postgres
     ports:
       - "5432:5432"
-  juke-box-live-music:
-    build: ./app
+    networks:
+      - net 
+  juke-box-live-music-frontend:
+    build:
+      context: ./app
+      target: frontend
     restart: always
-    command: sh -c "nodemon -L --ext '*' server/src/index.js"
+    command: sh -c "pnpm dev"
     volumes:
-      - ./app/frontend/src/:/app/frontend/src/
-      - ./app/server/src/:/app/server/src/
+      - ./app/frontend/src/:/app/src/
+    ports:
+      - "5173:5173"
+    networks:
+      - net
+  juke-box-live-music-backend:
+    build:
+      context: ./app
+      target: backend
+    restart: always
+    command: sh -c "nodemon -L --ext '*' src/index.js"
+    volumes:
+      - ./app/server/src/:/app/src/
     ports:
       - "8080:8080"
     depends_on:
       - database
-    links: 
-      - database
+    networks:
+      - net
