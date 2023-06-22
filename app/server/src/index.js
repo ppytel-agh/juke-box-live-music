@@ -18,6 +18,15 @@ app.get('/', (req, res) => {
   res.send('204 no content - sam se wymysl kontent fronciarzu');
 });
 
+// Uzywa token JWT i zwraca rezerwacje danego uzytkownika
+app.get('/api/user-events', require('./routes/get-user-reservation-list'));
+
+app.get('/api/events', require('./routes/get-all-events'));
+
+app.get('/api/events/:id', require('./routes/get-concert-info'));
+
+app.post('/api/events', require('./routes/register-user-for-concert'));
+
 app.post('/register-new-user', require('./routes/register-new-user'));
 
 app.post('/login', require('./routes/login'));
