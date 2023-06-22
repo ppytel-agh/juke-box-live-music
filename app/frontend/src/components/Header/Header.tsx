@@ -1,9 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import logo from '../../assets/logo.png';
 import './Header.css';
+import useToken from '../../hooks/useToken';
 
-const Header = ({ isLogged }: { isLogged: boolean }) => {
+const Header = () => {
+  const { token, getToken, deleteToken } = useToken();
+
+  useEffect(() => {
+    getToken()
+  },[])
+
+  const handleLogout = () => {
+    deleteToken()
+    window.location.replace('/')
+  }
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -20,10 +32,10 @@ const Header = ({ isLogged }: { isLogged: boolean }) => {
           <Nav className="ms-auto">
             <Nav.Link href="/wydarzenia">Wydarzenia</Nav.Link>
 
-            {isLogged ? (
+            {token ?  (
               <>
                 <Nav.Link href="/panel-klienta">Panel klienta</Nav.Link>
-                <Nav.Link href="/">Wyloguj</Nav.Link>
+                <Nav.Link onClick={handleLogout}>Wyloguj</Nav.Link>
               </>
             ) : (
               <>

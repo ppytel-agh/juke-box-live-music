@@ -6,8 +6,6 @@ const SignUp = () => {
 
   const [signUpData, setSignUpData] = useState({imie: '', nazwisko: '', email: '', haslo: ''})
 
-  const isLogged = false;
-
   const onFormChange = (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLButtonElement;
 
@@ -39,7 +37,7 @@ const SignUp = () => {
 
   return (
     <>
-    <Header isLogged={isLogged}/>
+    <Header />
     <div
       className="d-flex align-items-center justify-content-center vh-100"
       style={{ backgroundColor: '#BFD2FF' }}
