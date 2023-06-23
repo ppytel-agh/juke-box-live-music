@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
     return res.status(403).send('No authorization header provided');
     }
 
-    const token = authHeader.split(' ')[1];
+    const token = authHeader
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     const userId = decoded.id_uzytkownika;
