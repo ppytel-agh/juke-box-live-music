@@ -25,7 +25,7 @@ services:
       context: ./app
       target: frontend
     restart: always
-    command: sh -c "pnpm dev"
+    command: sh -c "pnpm dev --host"
     volumes:
       - ./app/frontend/src/:/app/src/
     ports:
