@@ -1,14 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import useToken from '../../hooks/useToken';
 
 const EventForm = () => {
+  const [selectedValue, setSelectedValue] = useState('');
+  
+  const {getToken} = useToken()
+
+  const handleBuyTickets = async () => {
+    const res = await
+      fetch('http://localhost:8080/api/events', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `${JSON.parse(getToken() ?? '')}`
+        },
+        body: selectedValue
+      })
+  };
+
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    console.log('aa');
-    // Handle form submission logic here
+    try{
+      // 
 
-    // on success
-    window.location.replace('/kupiono-bilet');
+      alert("Udało się kupić bilet!")
+      window.location.replace('/kupiono-bilet');
+    }
+    catch(err) {
+      alert(err)
+    }
   };
 
   return (
@@ -34,9 +55,9 @@ const EventForm = () => {
 
         <Form.Group controlId="iloscBiletow">
           <Form.Label className="mt-3">Ilość biletów</Form.Label>
-          <Form.Control as="select">
+          <Form.Control as="select" value={selectedValue} onChange={e => setSelectedValue(e.target.value)}>
             {[...Array(10)].map((_, index) => (
-              <option key={index + 1}>{index + 1}</option>
+              <option key={index + 1} value={index + 1}>{index + 1}</option>
             ))}
           </Form.Control>
         </Form.Group>
