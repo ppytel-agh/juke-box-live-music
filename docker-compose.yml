@@ -1,11 +1,51 @@
 version: "3.9"
+
+networks:
+  net:
+    driver: bridge
+
+volumes:
+  postgres_db:
+
 services:
-  juke-box-live-music:
-    build: ./app
+  database:
+    image: postgres
     restart: always
-    command: sh -c "nodemon -L --ext '*' server/src/index.js"
     volumes:
-      - ./app/frontend/src/:/app/frontend/src/
-      - ./app/server/src/:/app/server/src/
+      - postgres_db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - net 
+  juke-box-live-music-frontend:
+    build:
+      context: ./app
+      target: frontend
+    restart: always
+    command: sh -c "pnpm dev --host"
+    volumes:
+      - ./app/frontend/src/:/app/src/
+    ports:
+      - "5173:5173"
+    networks:
+      - net
+  juke-box-live-music-backend:
+    build:
+      context: ./app
+      target: backend
+    restart: always
+    command: sh -c "nodemon -L --ext '*' src/index.js"
+    volumes:
+      - ./app/server/src/:/app/src/
+    environment:
+      - DATABASE_URL=postgres://wzmttkjy:c-SPIyJ7a_ehqjZxdjE8vCvx1TuM9FKI@horton.db.elephantsql.com/wzmttkjy
+      - JWT_SECRET_KEY=XyZ3478sG9kq3S6v9YsAv5THJNu3274v
     ports:
       - "8080:8080"
+    depends_on:
+      - database
+    networks:
+      - net

@@ -54,18 +54,25 @@ const Events: React.FC = () => {
   const [events, setEvents] = useState([]);
 
   const fetchEventsData = () => {
-    fetch('http://localhost:8080/events')
+    fetch('http://localhost:8080/api/events')
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        setEvents(data);
+        const eventsWithImageUrl = data.map((event: any, index: any) => ({
+          ...event,
+          imageUrl: eventTitles[index % eventTitles.length].imageUrl
+        }));
+        setEvents(eventsWithImageUrl);
       });
   };
 
   useEffect(() => {
-    // fetchEventsData()
+    fetchEventsData()
   }, []);
+
+  console.log(events);
+  
 
   const formatDate = (dateToFormat: number) => {
     const date = new Date(dateToFormat);
@@ -82,9 +89,9 @@ const Events: React.FC = () => {
     <div className="events-container">
       <Container>
         <div className="grid-container">
-          {eventTitles.map(
-            ({ nazwa_koncertu, data_koncertu, imageUrl }, index) => (
-              <Link to={`/wydarzenia/${index}`} key={index}>
+          {events.map(
+            ({ nazwa_koncertu, data_koncertu, imageUrl, id_koncertu }, index) => (
+              <Link to={`/wydarzenia/${id_koncertu}`} key={index}>
                 <Card style={{ width: '18rem' }}>
                   {/* <Card.Img
                     variant="top"
