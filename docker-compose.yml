@@ -40,6 +40,9 @@ services:
     command: sh -c "nodemon -L --ext '*' src/index.js"
     volumes:
       - ./app/server/src/:/app/src/
+    environment:
+      - DATABASE_URL=postgres://wzmttkjy:c-SPIyJ7a_ehqjZxdjE8vCvx1TuM9FKI@horton.db.elephantsql.com/wzmttkjy
+      - JWT_SECRET_KEY=XyZ3478sG9kq3S6v9YsAv5THJNu3274v
     ports:
       - "8080:8080"
     depends_on:
