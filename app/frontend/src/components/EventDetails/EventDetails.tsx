@@ -87,7 +87,7 @@ const EventDetails = () => {
               {eventData.data_koncertu} | {eventData.artysta?.nazwa_artysty}
             </Card.Text>
             <Card.Text> {eventData.artysta?.opis_artysty} </Card.Text>
-            <Nav.Link href={`/kup-bilet/${eventData.id}`}>
+            <Nav.Link href={`/kup-bilet/${id}`}>
               <Button variant="primary">Kup bilet</Button>
             </Nav.Link>
           </Card.Body>
