@@ -48,12 +48,11 @@ const eventTitles = [
   },
 ];
 
-
 const EventDetails = () => {
   const [eventData, setEventData] = useState<any>({});
 
   const id = useLocation().pathname.split('/')[2];
-  
+
   const fetchEventsData = () => {
     fetch(`http://localhost:8080/api/events/${id}`)
       .then((response) => {
@@ -62,19 +61,15 @@ const EventDetails = () => {
       .then((data) => {
         const eventsWithImageUrl = {
           ...data,
-          imageUrl: eventTitles[data.id_koncertu - 1].imageUrl
+          imageUrl: eventTitles[data.id_koncertu - 1].imageUrl,
         };
         setEventData(eventsWithImageUrl);
       });
   };
 
   useEffect(() => {
-    fetchEventsData()
-    
+    fetchEventsData();
   }, []);
-
-  console.log(eventData);
-  
 
   return (
     <div
@@ -88,11 +83,12 @@ const EventDetails = () => {
         <Card>
           <Card.Body>
             <Card.Title>{eventData.nazwa_koncertu}</Card.Title>
-            <Card.Text>{eventData.data_koncertu} {eventData.artysta?.nazwa_artysty} {eventData.artysta?.opis_artysty} </Card.Text>
+            <Card.Text>
+              {eventData.data_koncertu} | {eventData.artysta?.nazwa_artysty}
+            </Card.Text>
+            <Card.Text> {eventData.artysta?.opis_artysty} </Card.Text>
             <Nav.Link href={`/kup-bilet/${eventData.id}`}>
-              <Button variant="primary">
-                Kup bilet
-              </Button>
+              <Button variant="primary">Kup bilet</Button>
             </Nav.Link>
           </Card.Body>
           <Card.Img
