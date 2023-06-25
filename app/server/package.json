@@ -4,7 +4,7 @@
   "description": "Backend for juke-box-live-music app",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --detectOpenHandles"
   },
   "author": "",
   "license": "ISC",
