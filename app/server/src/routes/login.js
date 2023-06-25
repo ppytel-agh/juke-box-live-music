@@ -12,13 +12,13 @@ module.exports = async (req, res) => {
     const user = await userRepository.findOne({where: {nazwa_uzytkownika: req.body.nazwa_uzytkownika} });
 
     if (!user) {
-      return res.status(400).send("User does not exist");
+      return res.status(400).send("Użytkownik nie istnieje!");
     }
 
     const validPassword = await bcrypt.compare(req.body.haslo, user.haslo);
 
     if (!validPassword) {
-      return res.status(400).send("Incorrect password");
+      return res.status(400).send("Nieprawidłowe hasło!");
     }
 
     const token = jwt.sign(
