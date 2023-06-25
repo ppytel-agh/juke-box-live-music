@@ -61,18 +61,15 @@ const Events: React.FC = () => {
       .then((data) => {
         const eventsWithImageUrl = data.map((event: any, index: any) => ({
           ...event,
-          imageUrl: eventTitles[index % eventTitles.length].imageUrl
+          imageUrl: eventTitles[index % eventTitles.length].imageUrl,
         }));
         setEvents(eventsWithImageUrl);
       });
   };
 
   useEffect(() => {
-    fetchEventsData()
+    fetchEventsData();
   }, []);
-
-  console.log(events);
-  
 
   const formatDate = (dateToFormat: number) => {
     const date = new Date(dateToFormat);
@@ -88,16 +85,15 @@ const Events: React.FC = () => {
   return (
     <div className="events-container">
       <Container>
+        <h1 className="mb-4 text-white">Sprawdź dostępne koncerty!</h1>
         <div className="grid-container">
           {events.map(
-            ({ nazwa_koncertu, data_koncertu, imageUrl, id_koncertu }, index) => (
+            (
+              { nazwa_koncertu, data_koncertu, imageUrl, id_koncertu },
+              index
+            ) => (
               <Link to={`/wydarzenia/${id_koncertu}`} key={index}>
-                <Card style={{ width: '18rem' }}>
-                  {/* <Card.Img
-                    variant="top"
-                    src={imageUrl}
-                    style={{ height: '140px' }}
-                  /> */}
+                <Card style={{ width: '18rem', height: '370px' }}>
                   <Image src={imageUrl} thumbnail style={{ height: '140px' }} />
                   <Card.Body>
                     <Card.Title>{nazwa_koncertu}</Card.Title>
