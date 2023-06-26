@@ -32,11 +32,12 @@ module.exports = async (req, res) => {
         const formattedReservations = userReservations.map((reservation) => ({
             id_rezerwacji: reservation.id_rezerwacji,
             liczba_biletow: reservation.liczba_biletow,
-            koszt_calkowity: reservation.koszt_calkowity,
             koncert: {
                 id_koncertu: reservation.koncert.id_koncertu,
                 nazwa_koncertu: reservation.koncert.nazwa_koncertu,
                 data_koncertu: reservation.koncert.data_koncertu,
+                liczba_pozostalych_biletow: reservation.koncert.liczba_pozostalych_biletow,
+                cena_biletu: reservation.koncert.cena_biletu,
                 artysta: {
                     id_artysty: reservation.koncert.artysta.id_artysty,
                     nazwa_artysty: reservation.koncert.artysta.nazwa_artysty,
