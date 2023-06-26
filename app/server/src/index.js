@@ -10,11 +10,7 @@ app.use(express.json());
 
 typeorm.createConnection({
   type: "postgres",
-  host: "database", 
-  port: 5432, 
-  username: "postgres", 
-  password: "postgres", 
-  database: "postgres",
+  url: process.env.DATABASE_URL,
   entities: [
     __dirname + '/entity/*.js'
   ],
