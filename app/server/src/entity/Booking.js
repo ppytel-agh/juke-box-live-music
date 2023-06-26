@@ -17,11 +17,6 @@ module.exports = new EntitySchema({
         },
         liczba_biletow: {
             type: "int"
-        },
-        koszt_calkowity: {
-            type: "decimal",
-            precision: 10,
-            scale: 2
         }
     },
     relations: {

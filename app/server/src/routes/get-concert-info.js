@@ -28,6 +28,8 @@ module.exports = async (req, res) => {
         id_koncertu: concert.id_koncertu,
         nazwa_koncertu: concert.nazwa_koncertu,
         data_koncertu: concert.data_koncertu,
+        liczba_pozostalych_biletow: concert.liczba_pozostalych_biletow,
+        cena_biletu: concert.cena_biletu,
         artysta: {
             id_artysty: concert.artysta.id_artysty,
             nazwa_artysty: concert.artysta.nazwa_artysty,

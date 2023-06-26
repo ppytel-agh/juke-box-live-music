@@ -18,6 +18,14 @@ module.exports = new EntitySchema({
         },
         id_artysty: {
             type: "int"
+        },
+        liczba_pozostalych_biletow: {
+            type: "int"
+        },
+        cena_biletu: {
+            type: "decimal",
+            precision: 10,
+            scale: 2
         }
     },
     relations: {
