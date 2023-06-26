@@ -22,7 +22,9 @@ describe('Concert Entity', () => {
     const testConcert = concertRepository.create({
       nazwa_koncertu: 'Wehikuł czasu',
       id_artysty: artist.id_artysty,
-      data_koncertu: "2023-07-07"
+      data_koncertu: "2023-07-07",
+      liczba_pozostalych_biletow: 100,
+      cena_biletu: 50.0
     });
 
     await concertRepository.save(testConcert);
