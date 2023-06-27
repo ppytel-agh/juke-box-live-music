@@ -6,7 +6,7 @@ const Concert = require('../entity/Concert.js');
 
 module.exports = async (req, res) => {
   try {
-    const token = req.headers.authorization.split(" ")[1];
+    const token = req.headers.authorization;
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
     const connection = typeorm.getConnection();

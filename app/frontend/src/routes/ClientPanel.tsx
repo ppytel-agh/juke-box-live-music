@@ -28,16 +28,7 @@ const ClientPanel = () => {
     fetchEventsData()
   }, []);
 
-  const userEvents = [
-    'Wydarzenie 1',
-    'Wydarzenie 2',
-    'Wydarzenie 3',
-    'Wydarzenie 4',
-    'Wydarzenie 5',
-  ];
-
-  // na razie puste, będzie trzeba zamienić
-  // userEvents = events
+  let userEvents = events
 
   return (
     <>
@@ -54,8 +45,15 @@ const ClientPanel = () => {
           <Col xs={12} md={6}>
             <h1 className="text-center">Panel klienta</h1>
             <ListGroup>
-              {userEvents.map((event, index) => (
-                <ListGroup.Item key={index}>{event}</ListGroup.Item>
+              {userEvents.map((event: any, index) => (
+                <ListGroup.Item key={index}>
+                  {event.koncert.nazwa_koncertu}
+                  <br/>
+                  {event.koncert.data_koncertu} 
+                  <br/>
+                  {event.koncert.artysta.nazwa_artysty + ' - '} 
+                  {event.koncert.artysta.opis_artysty} 
+                </ListGroup.Item>
               ))}
             </ListGroup>
           </Col>

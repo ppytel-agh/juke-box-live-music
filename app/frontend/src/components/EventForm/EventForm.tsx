@@ -1,43 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import useToken from '../../hooks/useToken';
 import { useLocation } from 'react-router-dom';
 
 const EventForm = () => {
   const [selectedValue, setSelectedValue] = useState('1');
-  const [selectedType, setSelectedType] = useState('100');
 
   const { getToken, token } = useToken();
   const id = useLocation().pathname.split('/')[2];
+  
+  const userToken: any = JSON.parse(token ?? '');
+  const id_koncertu = id;
+  const liczba_biletow = selectedValue;
+  let koszt_calkowity: any;
+
+  const [requestBody, setRequestBody] = useState({
+    token: userToken,
+    id_koncertu,
+    liczba_biletow,
+    koszt_calkowity,
+  });
+
+  const fetchData = async () => {  
+    await fetch(`http://localhost:8080/api/events/${id_koncertu}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `${JSON.parse(getToken() ?? '')}`,
+      }
+    })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      setRequestBody({
+        ...requestBody,
+        koszt_calkowity: data.cena_biletu
+      });
+    });
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-
+    
     try {
-      const userToken: any = JSON.parse(token ?? '');
-      const id_koncertu = id;
-      const liczba_biletow = selectedValue;
-      const koszt_calkowity = selectedType;
+      await fetch('http://localhost:8080/add-new-booking', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `${JSON.parse(getToken() ?? '')}`,
+        },
+        body: JSON.stringify(requestBody),
+      });
 
-      const requestBody = {
-        token: userToken,
-        id_koncertu,
-        liczba_biletow,
-        koszt_calkowity,
-      };
-
-      // TODO fix the request
-      // const res = await fetch('http://localhost:8080/api/add-new-booking', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     authorization: `${JSON.parse(getToken() ?? '')}`,
-      //   },
-      //   body: JSON.stringify(requestBody),
-      // });
-      //
-      // alert('Udało się kupić bilet!');
-      // window.location.replace('/kupiono-bilet');
+      alert('Udało się kupić bilet!');
+      window.location.replace('/kupiono-bilet');
     } catch (err) {
       alert(err);
     }
@@ -72,12 +93,10 @@ const EventForm = () => {
           <Form.Label className="mt-3">Rodzaj</Form.Label>
           <Form.Control
             as="select"
-            value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)}
+            value={requestBody.koszt_calkowity}
+            onChange={(e) => requestBody.koszt_calkowity= e.target.value}
           >
-            <option value="100">Standard - 100 zł</option>
-            <option value="200">Premium - 200 zł</option>
-            <option value="300">VIP - 300 zł</option>
+            <option value={requestBody.koszt_calkowity}>Standard - {requestBody.koszt_calkowity} zł</option>
           </Form.Control>
         </Form.Group>
 

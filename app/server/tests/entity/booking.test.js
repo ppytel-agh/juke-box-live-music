@@ -36,7 +36,9 @@ describe('Booking Entity', () => {
     const testConcert = await concertRepository.create({
       nazwa_koncertu: 'Wehikuł czasu',
       id_artysty: artist.id_artysty,
-      data_koncertu: "2023-07-07"
+      data_koncertu: "2023-07-07",
+      liczba_pozostalych_biletow: 100,
+      cena_biletu: 50.0
     });
 
     await concertRepository.save(testConcert);
@@ -45,8 +47,7 @@ describe('Booking Entity', () => {
     const testBooking = bookingRepository.create({
       id_uzytkownika: user.id_uzytkownika,
       id_koncertu: concert.id_koncertu,
-      liczba_biletow: 1,
-      koszt_calkowity: 150.0,
+      liczba_biletow: 1
     });
 
     await bookingRepository.save(testBooking);
@@ -88,7 +89,6 @@ describe('Booking Entity', () => {
     expect(booking).not.toBeNull();
     expect(booking.id_koncertu).toBeDefined();
     expect(booking.liczba_biletow).toBe(1);
-    expect(booking.koszt_calkowity).toBe("150.00")
   });
 
   it('should not find a non-existing booking', async () => {
